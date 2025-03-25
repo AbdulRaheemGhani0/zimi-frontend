@@ -16,7 +16,7 @@ export const ProductsProvider = ({ children }) => {
     setError(null);
     try {
       const url = userId
-        ? `https://zimi-backend-final.onrender.com/api/products/user/${userId}` // Fetch user-specific products
+        ? `https://zimi-backend-final.onrender.com/user/${userId}` // Fetch user-specific products
         : `https://zimi-backend-final.onrender.com/api/products`; // Fetch all products
       const response = await axios.get(url);
       setProducts(response.data);
