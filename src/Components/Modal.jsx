@@ -15,7 +15,7 @@ const OrderNowModal = ({ show, onClose, product }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/submit-order", {
+      const response = await axios.post("https://zimi-backend-final.onrender.com/submit-order", {
         productId: product._id,
         productName: product.name,
         quantity,
