@@ -39,7 +39,7 @@ const UserProfile = () => {
   const handleDeleteProduct = async (productId) => {
     try {
       // Send a DELETE request to the backend
-      await axios.delete(`http://localhost:5000/api/products/delete/${productId}`, {
+      await axios.delete(`https://zimi-backend-final.onrender.com/api/products/delete/${productId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the user's token for authentication
         },
