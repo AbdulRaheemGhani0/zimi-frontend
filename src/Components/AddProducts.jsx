@@ -74,7 +74,7 @@ export default function ProductForm() {
 
     try {
       // Use user._id from the authenticated user
-      await axios.post("http://localhost:5000/api/products/upload", {
+      await axios.post("https://zimi-backend-final.onrender.com/api/products/upload", {
         ...product,
         userId: user._id, // Use user._id from the context
       });
