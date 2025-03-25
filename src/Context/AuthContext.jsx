@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         }
 
         // Fetch user data from the server
-        const response = await axios.get("http://localhost:5000/auth/user", {
+        const response = await axios.get("https://zimi-backend-final.onrender.com/auth/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   // Login function
   const login = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
+      const response = await axios.post("https://zimi-backend-final.onrender.com/auth/login", {
         email,
         password,
       });
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   // Logout function
   const logout = async () => {
     try {
-      await axios.post("http://localhost:5000/auth/logout");
+      await axios.post("https://zimi-backend-final.onrender.com/auth/logout");
       localStorage.removeItem("token"); // Remove token from localStorage
       setUser(null); // Clear user from state
     } catch (error) {
@@ -120,7 +120,7 @@ export const useAuth = () => useContext(AuthContext);
 //           return;
 //         }
   
-//         const response = await axios.get("http://localhost:5000/auth/user", {
+//         const response = await axios.get("https://zimi-backend-final.onrender.com/auth/user", {
 //           headers: {
 //             Authorization: `Bearer ${token}`, // ✅ Send token in header
 //           },
@@ -146,7 +146,7 @@ export const useAuth = () => useContext(AuthContext);
 //   const login = async (email, password) => {
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:5000/auth/login",
+//         "https://zimi-backend-final.onrender.com/auth/login",
 //         { email, password },
 //         { withCredentials: true }
 //       );
@@ -166,7 +166,7 @@ export const useAuth = () => useContext(AuthContext);
 //   // 🚪 Logout Function
 //   const logout = async () => {
 //     try {
-//       await axios.post("http://localhost:5000/auth/logout", {}, { withCredentials: true });
+//       await axios.post("https://zimi-backend-final.onrender.com/auth/logout", {}, { withCredentials: true });
 //       localStorage.removeItem("token");
 //       setUser(null);
 //     } catch (error) {
