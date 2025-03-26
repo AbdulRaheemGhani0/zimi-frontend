@@ -26,7 +26,7 @@ function Home() {
       {/* Products Grid Section */}
       <Container className="products-grid py-5">
         {products.length === 0 ? (
-          <p className="text-center">No products found.</p>
+          <p className="text-center">Loading Products</p>
         ) : (
           <Row xs={1} md={2} lg={3} xl={4} className="g-4">
             {products.map((product) => (
