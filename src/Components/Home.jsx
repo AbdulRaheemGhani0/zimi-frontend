@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 import Footer from "./Footer";
 import { FaFire } from "react-icons/fa";
 import "../App.css";
-import AdSenseAd from "./AdSenseAd"; // Import the AdSense component
+import AdSenseAd from "./AdSenseAd.jsx"; // Import the AdSense component
 
 function Home() {
   const { products = [] } = useProducts();
