@@ -32,8 +32,8 @@ export const ProductsProvider = ({ children }) => {
   // Automatically fetch products when the provider is mounted
   useEffect(() => {
     fetchUserProducts(); // Fetch all products (no userId provided)
-  }, [fetchUserProducts]);
-
+  }, []);
+// [fetchUserProducts]
   // Provide the context value
   return (
     <ProductsContext.Provider value={{ products, fetchUserProducts, loading, error }}>
