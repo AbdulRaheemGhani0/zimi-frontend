@@ -1,0 +1,11 @@
+# render.yaml for static site
+services:
+  - type: web
+    name: zimimart
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: "./build"
+    routes:
+      - type: rewrite
+        source: "/*"
+        destination: "/index.html"
