@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Modal from './Modal'; // Import the Modal component
-import { useAuth } from './Context/AuthContext.jsx'; // Import the AuthContext
+import { useAuth } from '../Context/AuthContext.jsx'; // Import the AuthContext
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import "../Ordernowbtn.css"; // Import CSS for styling
 
