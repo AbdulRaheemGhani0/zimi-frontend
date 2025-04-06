@@ -27,7 +27,7 @@ export default function ProductForm() {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const categories = ["Electronics", "Clothing", "Books", "Home Appliances", "Beauty"];
-  const countries = ["United States", "Canada", "United Kingdom", "Australia", "India", "Germany", "France"]; // Add more countries as needed
+  const countries = ["United States","Pakistan", "Canada", "United Kingdom", "Australia", "India", "Germany", "France"]; // Add more countries as needed
 
   // Handle text input changes
   const handleChange = (e) => {
