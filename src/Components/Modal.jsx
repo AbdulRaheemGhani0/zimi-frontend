@@ -3,7 +3,7 @@ import axios from 'axios';
 import Modal from './Modal'; // Import the Modal component
 import { useAuth } from './AuthContext'; // Import the AuthContext
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
-import "../OrderNowBtn.css"; // Import CSS for styling
+import "../Ordernowbtn.css"; // Import CSS for styling
 
 const OrderNowForm = ({ product   }) => {
     const [quantity, setQuantity] = useState(1);
