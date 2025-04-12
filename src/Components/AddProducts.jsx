@@ -26,8 +26,32 @@ export default function ProductForm() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const categories = ["Electronics", "Clothing", "Books", "Home Appliances", "Beauty"];
-  const countries = ["United States","Pakistan", "Canada", "United Kingdom", "Australia", "India", "Germany", "France"]; // Add more countries as needed
+  const categories =  [
+  "Electronics", "Clothing", "Books", "Home Appliances", "Beauty",
+  "Fashion", "Footwear", "Accessories", "Jewelry", "Watches",
+  "Mobile Phones", "Laptops", "Tablets", "Headphones", "Cameras",
+  "Gaming", "Toys", "Baby Products", "Pet Supplies", "Groceries",
+  "Furniture", "Home Decor", "Kitchenware", "Gardening", "Lighting",
+  "Sports", "Fitness", "Outdoor Gear", "Cycling", "Automotive",
+  "Health", "Wellness", "Vitamins", "Medical Supplies", "Sexual Wellness",
+  "Office Supplies", "Stationery", "Art & Craft", "Musical Instruments",
+  "Collectibles", "Antiques", "Handmade", "DIY", "Party Supplies",
+  "Travel", "Luggage", "Tickets", "Event Tickets", "Gift Cards",
+  "Digital Products", "Software", "E-books", "Online Courses", "Subscriptions",
+  "Vintage", "Thrift", "Renewed/Refurbished", "Bulk/Wholesale", "Industrial Supplies"
+];
+  const countries = [
+  "United States", "Pakistan", "Canada", "United Kingdom", "Australia", 
+  "India", "Germany", "France", "China", "Japan", "South Korea", "Brazil", 
+  "Mexico", "Italy", "Spain", "Netherlands", "Russia", "Singapore", 
+  "United Arab Emirates", "Saudi Arabia", "Turkey", "Indonesia", 
+  "Malaysia", "Thailand", "Vietnam", "Philippines", "Poland", "Sweden", 
+  "Norway", "Denmark", "Switzerland", "Belgium", "Austria", "Ireland", 
+  "South Africa", "Nigeria", "Egypt", "Argentina", "Chile", "Colombia", 
+  "Peru", "New Zealand", "Hong Kong", "Israel", "Portugal", "Greece", 
+  "Finland", "Czech Republic", "Hungary", "Romania", "Ukraine", "Bangladesh", 
+  "Sri Lanka", "Kenya", "Morocco"
+]; // Add more countries as needed
 
   // Handle text input changes
   const handleChange = (e) => {
