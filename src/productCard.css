@@ -1,4 +1,12 @@
 
+/* Font imports */
+@import url('https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi');
+
+
+
+
+
+
 .product-card-wrapper {
   height: 420px;
   width: 654px;
@@ -133,10 +141,6 @@
     font-size: 12px;
   }
 }
-
-/* Font imports */
-@import url('https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi');
-
 
 
 
