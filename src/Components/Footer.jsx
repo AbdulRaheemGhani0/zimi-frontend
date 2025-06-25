@@ -1,60 +1,42 @@
 
+import '../Footer.css'; // Import the CSS file for styling
+
 function Footer() {
   return (
     <div className="Footer-div">
-
-    <div className="footer-main-colum">
-    <div className="footer-col">
+      <div className="footer-main-column">
+        <div className="footer-col">
           <h4>Info</h4>
           <ul className="links">
-            <li>
-              <a href="#">About Us</a>
-            </li>
-          
-          
-            <li>
-              <a href="#">Service</a>
-            </li>
-            <li>
-              <a href="#">Collection</a>
-            </li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/privacy-policy">Service</a></li>
+            <li><a href="/Products">Collection</a></li>
           </ul>
-        </div></div>
-        <div className="footer-main-colum">    <div className="footer-col">
+        </div>
+      </div>
+
+      <div className="footer-main-column">
+        <div className="footer-col">
           <h4>Explore</h4>
           <ul className="links">
-            
-            <li>
-              <a href="#">Latest Products</a>
-            </li>
-          
-            <li>
-              <a href="#">Popular Products</a>
-            </li>
-         
-            <li>
-              <a href="#">New Uploads</a>
-            </li>
+            <li><a href="/Products">Latest Products</a></li>
+            <li><a href="/Products">Popular Products</a></li>
+            <li><a href="/Products">New Uploads</a></li>
           </ul>
-        </div></div>
-    <div className="footer-main-colum">    <div className="footer-col">
+        </div>
+      </div>
+
+      <div className="footer-main-column">
+        <div className="footer-col">
           <h4>Legal</h4>
           <ul className="links">
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Privacy Policy</a>
-            </li>
-            
-           
-            {/* <li>
-              <a href="#">Media Kit</a>
-            </li> */}
+            <li><a href="/Products">Services</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
           </ul>
-        </div></div>
-    
-        <div  className="footer-main-colum">
+        </div>
+      </div>
+
+      {/* <div className="footer-main-column">
         <div className="footer-col">
           <h4>Newsletter</h4>
           <p>
@@ -62,109 +44,24 @@ function Footer() {
             tips, and exclusive offers.
           </p>
           <form action="#">
-            <input type="text" placeholder="Your email" required="" />
+            <input type="text" placeholder="Your email" required />
             <button type="submit">SUBSCRIBE</button>
           </form>
           <div className="icons">
-            <i className="fa-brands fa-facebook-f" />
-            <i className="fa-brands fa-twitter" />
-            <i className="fa-brands fa-linkedin" />
-            <i className="fa-brands fa-github" />
+            <i className="fa-brands fa-facebook-f"></i>
+            <i className="fa-brands fa-twitter"></i>
+            <i className="fa-brands fa-linkedin"></i>
+            <i className="fa-brands fa-github"></i>
           </div>
         </div>
-      </div></div>
-  )
+      </div> */}
+    </div>
+  );
 }
 
 export default Footer;
-{/* <div>
-<section className="footer">
-<div className="footer-row">
-<div className="footer-col">
-<h4>Info</h4>
-<ul className="links">
-<li>
-  <a href="#">About Us</a>
-</li>
-<li>
-  <a href="#">Compressions</a>
-</li>
-<li>
-  <a href="#">Customers</a>
-</li>
-<li>
-  <a href="#">Service</a>
-</li>
-<li>
-  <a href="#">Collection</a>
-</li>
-</ul>
-</div>
-<div className="footer-col">
-<h4>Explore</h4>
-<ul className="links">
-<li>
-  <a href="#">Free Designs</a>
-</li>
-<li>
-  <a href="#">Latest Designs</a>
-</li>
-<li>
-  <a href="#">Themes</a>
-</li>
-<li>
-  <a href="#">Popular Designs</a>
-</li>
-<li>
-  <a href="#">Art Skills</a>
-</li>
-<li>
-  <a href="#">New Uploads</a>
-</li>
-</ul>
-</div>
-<div className="footer-col">
-<h4>Legal</h4>
-<ul className="links">
-<li>
-  <a href="#">Customer Agreement</a>
-</li>
-<li>
-  <a href="#">Privacy Policy</a>
-</li>
-<li>
-  <a href="#">GDPR</a>
-</li>
-<li>
-  <a href="#">Security</a>
-</li>
-<li>
-  <a href="#">Testimonials</a>
-</li>
-<li>
-  <a href="#">Media Kit</a>
-</li>
-</ul>
-</div>
-<div className="footer-col">
-<h4>Newsletter</h4>
-<p>
-Subscribe to our newsletter for a weekly dose of news, updates, helpful
-tips, and exclusive offers.
-</p>
-<form action="#">
-<input type="text" placeholder="Your email" required="" />
-<button type="submit">SUBSCRIBE</button>
-</form>
-<div className="icons">
-<i className="fa-brands fa-facebook-f" />
-<i className="fa-brands fa-twitter" />
-<i className="fa-brands fa-linkedin" />
-<i className="fa-brands fa-github" />
-</div>
-</div>
-</div>
-</section>
 
 
-</div> */}
+
+
+

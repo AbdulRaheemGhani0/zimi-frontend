@@ -1,70 +1,106 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Auth/firebase'; 
+
+
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
+  const [error, setError] = useState(""); // Store error messages
+  const navigate = useNavigate(); // Redirect after login
 
-  const onFinish = async (values) => {
-    const { email, password } = values;
-    setLoading(true);
+  // Formik form handling
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email format").required("Email is required"),
+      password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      setLoading(true);
+      setError(""); // Reset previous errors
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      
-      navigate('/'); 
-    } catch (error) {
-      alert(error.message || 'Login failed');
-    }
-    setLoading(false);
-  };
+      try {
+        const response = await axios.post("http://localhost:5000/auth/login", values);
 
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      // alert(`Welcome, ${result.user.displayName}!`);
-      navigate('/');
-    } catch (error) {
-      alert(error.message || 'Google login failed');
-    }
-  };
+        const token = response.data.token;
+
+        // Store token in localStorage and verify
+        if (token) {
+          localStorage.setItem("token", token);
+          console.log("Token stored successfully:", token);
+
+          // Reset form and navigate to homepage
+          resetForm();
+          navigate("/"); // Redirect to home
+          window.location.reload(); // Force reload to refresh state
+        } else {
+          setError("Token not received from server.");
+        }
+      } catch (err) {
+        console.error("Login Error:", err);
+        setError(err.response?.data?.error || "Invalid credentials. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    },
+  });
 
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
-      <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '400px' }}>
+      <div className="bg-white p-4 rounded shadow w-100" style={{ maxWidth: "400px" }}>
         <h2 className="text-center mb-4">Login</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const values = Object.fromEntries(formData.entries());
-            onFinish(values);
-          }}
-        >
+
+        {/* Display Error Message */}
+        {error && <div className="alert alert-danger">{error}</div>}
+
+        <form onSubmit={formik.handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email</label>
-            <input type="email" className="form-control" id="email" name="email" required />
+            <input
+              type="email"
+              className={`form-control ${formik.touched.email && formik.errors.email ? "is-invalid" : ""}`}
+              id="email"
+              name="email"
+              {...formik.getFieldProps("email")}
+            />
+            {formik.touched.email && formik.errors.email && (
+              <div className="invalid-feedback">{formik.errors.email}</div>
+            )}
           </div>
 
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control" id="password" name="password" required />
+            <input
+              type="password"
+              className={`form-control ${formik.touched.password && formik.errors.password ? "is-invalid" : ""}`}
+              id="password"
+              name="password"
+              {...formik.getFieldProps("password")}
+            />
+            {formik.touched.password && formik.errors.password && (
+              <div className="invalid-feedback">{formik.errors.password}</div>
+            )}
           </div>
 
           <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
-        <button onClick={handleGoogleLogin} className="btn btn-danger w-100 mt-3">
+
+        {/* Google Login Placeholder
+        <button className="btn btn-danger w-100 mt-3" onClick={() => alert("Google Login coming soon!")}>
           Login with Google
-        </button>
+        </button> */}
+
         <p className="text-center mt-4">
-          Dont have an account? <Link to="/signup" className="text-primary">Sign Up</Link>
+          Do Not have an account? <Link to="/signup" className="text-primary">Sign Up</Link>
         </p>
       </div>
     </div>
@@ -74,189 +110,4 @@ const LoginForm = () => {
 export default LoginForm;
 
 
-// import { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import '../Auth/firebase'; // Ensure Firebase is initialized
 
-// const LoginForm = () => {
-//   const [loading, setLoading] = useState(false);
-//   const navigate = useNavigate();
-//   const auth = getAuth();
-
-//   const onFinish = async (values) => {
-//     const { email, password } = values;
-//     console.log("values ==>",values)
-//     setLoading(true);
-
-//     try {
-//       await signInWithEmailAndPassword(auth, email, password);
-//       alert('Login successful!');
-//       navigate('/'); // Redirect to a dashboard or home page
-//     } catch (error) {
-//       alert(error.message || 'Login failed');
-//     }
-//     setLoading(false);
-//   };
-
-//   return (
-//     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
-//       <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '400px' }}>
-//         <h2 className="text-center mb-4">Login</h2>
-//         <form
-//           onSubmit={(e) => {
-//             e.preventDefault();
-//             const formData = new FormData(e.target);
-//             const values = Object.fromEntries(formData.entries());
-//             onFinish(values);
-//           }}
-//         >
-//           <div className="mb-3">
-//             <label htmlFor="email" className="form-label">Email</label>
-//             <input type="email" className="form-control" id="email" name="email" required />
-//           </div>
-
-//           <div className="mb-3">
-//             <label htmlFor="password" className="form-label">Password</label>
-//             <input type="password" className="form-control" id="password" name="password" required />
-//           </div>
-
-//           <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-//             {loading ? 'Logging in...' : 'Login'}
-//           </button>
-//         </form>
-//         <p className="text-center mt-4">
-//           Dont have an account? <Link to="/signup" className="text-primary">Sign Up</Link>
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LoginForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-
-// const LoginForm = () => {
-//   const [loading, setLoading] = useState(false);
-//   const navigate = useNavigate();
-
-//   const onFinish = async (values) => {
-//     const { email, password } = values;
-//     setLoading(true);
-//     try {
-//       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-//       localStorage.setItem('token', response.data.token);
-//       alert('Login successful!'); // Replace Ant Design message with a simple alert
-//       navigate('/dashboard');
-//     } catch (error) {
-//       alert(error.response?.data?.message || 'Login failed'); // Replace Ant Design message with a simple alert
-//     }
-//     setLoading(false);
-//   };
-
-//   const onFinishFailed = (errorInfo) => {
-//     alert('Please check your inputs and try again!'); // Replace Ant Design message with a simple alert
-//   };
-
-//   return (
-//     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
-//       <div className="bg-white p-4 rounded shadow-sm w-100" style={{ maxWidth: '400px' }}>
-//         <h2 className="text-center mb-4">Login</h2>
-//         <form onSubmit={(e) => {
-//           e.preventDefault();
-//           const formData = new FormData(e.target);
-//           const values = Object.fromEntries(formData.entries());
-//           onFinish(values);
-//         }}>
-//           <div className="mb-3">
-//             <label htmlFor="email" className="form-label">Email</label>
-//             <input
-//               type="email"
-//               className="form-control"
-//               id="email"
-//               name="email"
-//               placeholder="Enter your email"
-//               required
-//             />
-//           </div>
-
-//           <div className="mb-3">
-//             <label htmlFor="password" className="form-label">Password</label>
-//             <input
-//               type="password"
-//               className="form-control"
-//               id="password"
-//               name="password"
-//               placeholder="Enter your password"
-//               required
-//             />
-//           </div>
-
-//           <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-//             {loading ? 'Logging in...' : 'Login'}
-//           </button>
-//         </form>
-//         <p className="text-center mt-4">
-//           Dont have an account? <Link to="/signup" className="text-primary">Sign Up</Link>
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LoginForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { Link } from "react-router-dom";
-
-// export default function Login() {
-
-//   return (
-//     <div>
-//       <form>
-//       <div className="login-wrap">
-//   <h2>Login</h2>
-//   <div className="form">
-//   <input type="Email" placeholder="Email" name="un" />
-//   <input type="password" placeholder="Password" name="pw" />
-//     <button type="submit"> Sign in </button>
-
-//       <p> Dont have an account? Register </p>
-//       <Link to="/signup"> <li className="navbar-li">Sign Up</li></Link>
-//   </div>
-// </div></form>
-
-//     </div>
-
-//   )
-// }

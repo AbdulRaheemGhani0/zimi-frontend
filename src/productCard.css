@@ -1,0 +1,258 @@
+
+.product-card-wrapper {
+  height: 420px;
+  width: 654px;
+  margin: 20px auto;
+  border-radius: 7px;
+  box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  display: flex;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.product-img {
+  width: 50%;
+  height: 100%;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.product-text {
+  padding-top: 20px;
+}
+
+.product-text h1 {
+  font-size: 28px;
+  color: #474747;
+  font-family: 'Bentham', serif;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.product-text h2 {
+  font-size: 13px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #d2d2d2;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
+
+.product-text p {
+  font-family: 'Playfair Display', serif;
+  color: #8d8d8d;
+  line-height: 1.7em;
+  font-size: 15px;
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+
+.product-price-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.product-price-btn p {
+  font-family: 'Trocchi', serif;
+  font-size: 24px;
+  color: #474747;
+  margin: 0;
+}
+
+.product-price-btn span {
+  font-family: 'Suranna', serif;
+  font-size: 28px;
+}
+
+.custom-buy-btn {
+  height: 50px;
+  width: 176px;
+  border: none;
+  border-radius: 60px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  background-color: #9cebd5 !important;
+  color: #ffffff !important;
+  transition: background-color 0.3s;
+}
+
+.custom-buy-btn:hover {
+  background-color: #79b0a1 !important;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .product-card-wrapper {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .product-img, .product-info {
+    width: 100%;
+  }
+  
+  .product-img {
+    height: 250px;
+  }
+
+  .product-text h1 {
+    font-size: 24px;
+  }
+
+  .product-price-btn p {
+    font-size: 20px;
+  }
+
+  .product-price-btn span {
+    font-size: 24px;
+  }
+
+  .custom-buy-btn {
+    width: 140px;
+    font-size: 12px;
+  }
+}
+
+/* Font imports */
+@import url('https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+ .product-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px;
+  width: 400px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff; 
+}
+
+.product-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+} 
+
+.product-image {
+  width: 100%;
+  height: 300px; 
+  object-fit: cover; 
+  border-bottom: 1px solid #ddd; 
+}
+
+.product-details {
+  padding: 20px;
+  text-align: center;
+}
+
+
+.product-title {
+  font-size: 1.6rem; 
+  margin-bottom: 15px;
+  color: #333;
+}
+
+
+.product-description {
+  font-size: 1.1rem; 
+  color: #555; 
+  margin-bottom: 20px;
+  line-height: 1.5; 
+}
+
+
+.product-price {
+  font-size: 1.5rem; 
+  font-weight: bold;
+  color: #007bff; 
+  margin-bottom: 20px;
+}
+
+
+.buy-btn {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.buy-btn:hover {
+  background-color: #0056b3; 
+}
+
+
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%; 
+    margin: 10px 0; 
+  }
+
+  .product-image {
+    height: 250px; 
+  }
+
+  .product-title {
+    font-size: 1.4rem; 
+  }
+
+  .product-description {
+    font-size: 1rem; 
+  }
+
+  .product-price {
+    font-size: 1.3rem; 
+  }
+} */

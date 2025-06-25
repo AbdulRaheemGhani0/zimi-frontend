@@ -1,0 +1,72 @@
+/* Custom Navbar Styling */
+.custom-navbar {
+  background: #DFDFDF; /* White background */
+  box-shadow: 0 5px 20px rgba(0,0,0,.1); /* Matching your category section shadow */
+  padding: 10px 0;
+}
+
+/* Navbar Logo */
+.navbar-logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700; /* Bolder like your product titles */
+  color: #18181B; /* Dark gray like your headings */
+  margin: 0;
+  letter-spacing: -0.5px; /* Similar to product titles */
+}
+
+/* Navbar Links */
+.nav-link {
+  background: #F4F4F5 !important; /* Light gray like category buttons */
+  border: none !important;
+  border-radius: 20px !important; /* Rounded like category buttons */
+  padding: 8px 16px !important; /* Same padding as category buttons */
+  margin: 0 5px !important;
+  font-size: 14px !important; /* Same size as category buttons */
+  font-weight: 500 !important; /* Same weight as category buttons */
+  color: #52525B !important; /* Medium gray like inactive category buttons */
+  transition: all 0.3s ease !important;
+}
+
+.nav-link:hover {
+  background: #E5E5E5 !important; /* Slightly darker gray on hover */
+  color: #18181B !important; /* Dark text on hover */
+}
+
+.nav-link.active {
+  background: #18181B !important; /* Black for active state */
+  color: white !important; /* White text for active state */
+}
+
+/* Toggle Button Styling */
+.navbar-toggle {
+  border: none;
+  outline: none;
+  background: #52525B!important; /* Match the category button style */
+  border-radius: 20px !important;
+  padding: 8px 16px !important;
+}
+
+.navbar-toggle:focus {
+  box-shadow: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .custom-navbar {
+    padding: 10px 15px;
+  }
+
+  .nav-link {
+    margin: 5px 0 !important;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navbar-collapse {
+    background: #52525B;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
+  }
+}

@@ -1,69 +1,99 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import '../Auth/firebase'; // Ensure Firebase is initialized
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import axios from "axios";
 
-// ✅ Explicitly export AuthContext
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const auth = getAuth();
 
+  // Fetch user data on initial load
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => unsubscribe();
-  }, [auth]);
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
 
-  const logout = async () => {
-    await signOut(auth);
+        // If no token is found, skip the request
+        if (!token) {
+          setLoading(false);
+          return;
+        }
+
+        // Fetch user data from the server
+        const response = await axios.get("http://localhost:5000/auth/user", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        // Ensure the response contains a valid user object
+        if (response.data && response.data.user) {
+          setUser(response.data.user);
+        } else {
+          setUser(null); // Set user to null if the response is invalid
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+        setUser(null); // Set user to null on error
+      } finally {
+        setLoading(false); // Ensure loading is set to false
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  // Login function
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post("http://localhost:5000/auth/login", {
+        email,
+        password,
+      });
+
+      // Ensure the response contains a valid token and user object
+      if (response.data.accessToken && response.data.user) {
+        localStorage.setItem("token", response.data.accessToken); // Store token in localStorage
+        setUser(response.data.user); // Set user in state
+      } else {
+        throw new Error("Invalid response from server");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw error; // Re-throw the error for the caller to handle
+    }
   };
 
+  // Logout function
+  const logout = async () => {
+    try {
+      await axios.post("http://localhost:5000/auth/logout");
+      localStorage.removeItem("token"); // Remove token from localStorage
+      setUser(null); // Clear user from state
+    } catch (error) {
+      console.error("Logout failed:", error);
+      throw error; // Re-throw the error for the caller to handle
+    }
+  };
+
+  // Memoize the context value to prevent unnecessary re-renders
+  const contextValue = useMemo(
+    () => ({
+      user,
+      loading,
+      login,
+      logout,
+    }),
+    [user, loading]
+  );
+
   return (
-    <AuthContext.Provider value={{ user, loading, logout }}>
-      {!loading && children}
+    <AuthContext.Provider value={contextValue}>
+      {!loading && children} {/* Render children only when loading is false */}
     </AuthContext.Provider>
   );
 };
 
-// ✅ Custom hook for using auth
 export const useAuth = () => useContext(AuthContext);
 
 
-
-// import { createContext, useContext, useEffect, useState } from 'react';
-// import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-// import '../Auth/firebase'; // Ensure Firebase is initialized
-
-// const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//   const [user, setUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const auth = getAuth();
-
-//   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-//       setUser(currentUser);
-//       setLoading(false);
-//     });
-//     return () => unsubscribe();
-//   }, [auth]);
-
-//   const logout = async () => {
-//     await signOut(auth);
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ user, loading, logout }}>
-//       {!loading && children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export const useAuth = () => {
-//   return useContext(AuthContext);
-// };
