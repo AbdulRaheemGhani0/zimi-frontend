@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect } from "react";
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
+import 'bootstrap/dist/css/bootstrap.min.css';
  import { useAuth } from "./Context/AuthContext";
 import { useProducts } from "./Context/ProductsContext";
 
