@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../ProductCard.css";
+import "../productCard.css";
 import { Button } from "react-bootstrap";
 
 export default function ProductCard({ _id, name, description, price, image }) {
