@@ -11,7 +11,11 @@ function Navbar() {
       <Container>
         {/* Logo */}
         <BsNavbar.Brand as={Link} to="/" className="navbar-logo">
-          <h1>Zimi</h1>
+          <img 
+            src="/111111111111111111111-removebg-preview (2).png" 
+            alt="Zimi Logo" 
+            className="logo-image"
+          />
         </BsNavbar.Brand>
 
         {/* Toggle Button for Mobile */}
@@ -55,10 +59,22 @@ function Navbar() {
   );
 }
 
-export default Navbar;
-
-
-// import { Link } from "react-router-dom";
+export default Navbar; 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ // import { Link } from "react-router-dom";
 // import { Navbar as BsNavbar, Nav, Container } from "react-bootstrap";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import '../NavbarCSS.css'; // Custom CSS for additional styling
@@ -71,6 +87,7 @@ export default Navbar;
 //       <Container>
 //         {/* Logo */}
 //         <BsNavbar.Brand as={Link} to="/" className="navbar-logo">
+        
 //           <h1>Zimi</h1>
 //         </BsNavbar.Brand>
 
@@ -116,3 +133,4 @@ export default Navbar;
 // }
 
 // export default Navbar;
+

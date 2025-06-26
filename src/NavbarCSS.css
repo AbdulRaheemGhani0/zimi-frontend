@@ -6,12 +6,15 @@
 }
 
 /* Navbar Logo */
-.navbar-logo h1 {
-  font-size: 1.5rem;
-  font-weight: 700; /* Bolder like your product titles */
-  color: #18181B; /* Dark gray like your headings */
-  margin: 0;
-  letter-spacing: -0.5px; /* Similar to product titles */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 55px; /* Adjust based on your logo's aspect ratio */
+  width: auto;
+  max-width: 150px; /* Prevent logo from being too wide */
 }
 
 /* Navbar Links */
@@ -69,4 +72,111 @@
     margin-top: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,.1);
   }
+
+  .logo-image {
+    height: 30px; /* Smaller logo on mobile */
+  }
+}         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         /*  
+.custom-navbar {
+  background: #DFDFDF; 
+  box-shadow: 0 5px 20px rgba(0,0,0,.1);  
+  padding: 10px 0;
 }
+
+ 
+.navbar-logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700; 
+  color: #18181B;  
+  margin: 0;
+  letter-spacing: -0.5px; 
+}
+
+ 
+.nav-link {
+  background: #F4F4F5 !important; 
+  border: none !important;
+  border-radius: 20px !important;  
+  padding: 8px 16px !important;  
+  margin: 0 5px !important;
+  font-size: 14px !important; 
+  font-weight: 500 !important;  
+  color: #52525B !important;  
+  transition: all 0.3s ease !important;
+}
+
+.nav-link:hover {
+  background: #E5E5E5 !important;  
+  color: #18181B !important;  
+}
+
+.nav-link.active {
+  background: #18181B !important;  
+  color: white !important;  
+}
+
+ 
+.navbar-toggle {
+  border: none;
+  outline: none;
+  background: #52525B!important;  
+  border-radius: 20px !important;
+  padding: 8px 16px !important;
+}
+
+.navbar-toggle:focus {
+  box-shadow: none;
+}
+ 
+@media (max-width: 992px) {
+  .custom-navbar {
+    padding: 10px 15px;
+  }
+
+  .nav-link {
+    margin: 5px 0 !important;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navbar-collapse {
+    background: #52525B;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
+  }
+} */
