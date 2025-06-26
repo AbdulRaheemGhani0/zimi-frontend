@@ -39,7 +39,20 @@ function Home() {
               <button className="category-btn">Accessories</button>
             </div>
           </div>
-
+   <div className="categories-section">
+            <div className="categories-list">
+              <button className="category-btn active">All Countries</button>
+              <button className="category-btn">United States</button>
+              <button className="category-btn">Pakistan</button>
+              <button className="category-btn">Canada</button>
+              <button className="category-btn">United Kingdom</button>
+              <button className="category-btn">Austrailia</button>
+             <button className="category-btn ">India</button>
+              <button className="category-btn">Germany</button>
+              <button className="category-btn">France</button>
+           
+            </div>
+          </div>
           {/* Products Grid Section */}
           <div className="products-main">
             <Container className="AllProducts">
