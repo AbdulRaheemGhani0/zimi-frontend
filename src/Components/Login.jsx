@@ -1,5 +1,4 @@
 
-
 import { useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -23,34 +22,45 @@ const LoginForm = () => {
       email: Yup.string().email("Invalid email format").required("Email is required"),
       password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
     }),
-    onSubmit: async (values, { resetForm }) => {
-      setLoading(true);
-      setError(""); // Reset previous errors
+onSubmit: async (values, { resetForm }) => {
+  setLoading(true);
+  setError("");
 
-      try {
-        const response = await axios.post("http://localhost:5000/auth/login", values);
+  try {
+    const response = await axios.post("http://localhost:5000/auth/login", values);
+    
+    // Debug: log the entire response
+    console.log("Full response:", response);
+    console.log("Response data:", response.data);
+    
+    // Check for token in different possible properties
+    const token = response.data.token || response.data.accessToken || response.data.access_token;
+    
+    if (token) {
+      localStorage.setItem("token", token);
+      console.log("Token stored successfully:", token);
 
-        const token = response.data.token;
-
-        // Store token in localStorage and verify
-        if (token) {
-          localStorage.setItem("token", token);
-          console.log("Token stored successfully:", token);
-
-          // Reset form and navigate to homepage
-          resetForm();
-          navigate("/"); // Redirect to home
-          window.location.reload(); // Force reload to refresh state
-        } else {
-          setError("Token not received from server.");
-        }
-      } catch (err) {
-        console.error("Login Error:", err);
-        setError(err.response?.data?.error || "Invalid credentials. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    },
+      // Set default Authorization header
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      
+      resetForm();
+      navigate("/");
+      window.location.reload();
+    } else {
+      setError("Token not received from server. Response: " + JSON.stringify(response.data));
+    }
+  } catch (err) {
+    console.error("Login Error:", err);
+    if (err.response) {
+      console.error("Response data:", err.response.data);
+      console.error("Response status:", err.response.status);
+      console.error("Response headers:", err.response.headers);
+    }
+    setError(err.response?.data?.error || "Login failed. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+},
   });
 
   return (

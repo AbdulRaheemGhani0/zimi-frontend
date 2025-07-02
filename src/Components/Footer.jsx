@@ -36,25 +36,6 @@ function Footer() {
         </div>
       </div>
 
-      {/* <div className="footer-main-column">
-        <div className="footer-col">
-          <h4>Newsletter</h4>
-          <p>
-            Subscribe to our newsletter for a weekly dose of news, updates, helpful
-            tips, and exclusive offers.
-          </p>
-          <form action="#">
-            <input type="text" placeholder="Your email" required />
-            <button type="submit">SUBSCRIBE</button>
-          </form>
-          <div className="icons">
-            <i className="fa-brands fa-facebook-f"></i>
-            <i className="fa-brands fa-twitter"></i>
-            <i className="fa-brands fa-linkedin"></i>
-            <i className="fa-brands fa-github"></i>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

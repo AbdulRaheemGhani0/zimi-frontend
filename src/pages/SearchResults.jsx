@@ -1,12 +1,20 @@
 
-import { Row, Col, Container } from "react-bootstrap";
-import { useProducts } from "../Context/ProductsContext";
-import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
+
+import { useState, useEffect } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Row, Col, Container, Navbar } from "react-bootstrap";
+import axios from 'axios';
+
 import "../App.css";
 
-function Home() {
-  const { products = [] } = useProducts();
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+export default function SearchResults() {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('q');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleViewDetails = (productId) => {
@@ -25,40 +33,47 @@ function Home() {
     return stars;
   };
 
+  useEffect(() => {
+    const fetchResults = async () => {
+      if (!query) return;
+      
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `${API_BASE_URL}/api/products/search?q=${encodeURIComponent(query)}`
+        );
+        setProducts(response.data);
+      } catch (err) {
+        setError(err.message);
+        console.error('Search error:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchResults();
+  }, [query]);
+
+  if (loading) return <div className="text-center my-5">Loading...</div>;
+  if (error) return <div className="text-center my-5">Error: {error}</div>;
+
   return (
     <div className="home-container">
+      
+      <Navbar />
       <div className="home-content">
         <div className="main-content-area">
-          {/* Categories Section */}
-          <div className="categories-section">
-            <div className="categories-list">
-              <button className="category-btn active">All Products</button>
-              <button className="category-btn">Men's Clothing</button>
-              <button className="category-btn">Women's Clothing</button>
-              <button className="category-btn">Electronics</button>
-              <button className="category-btn">Home & Kitchen</button>
-              <button className="category-btn">Accessories</button>
-            </div>
+          {/* Search Header */}
+          <div className="search-header">
+            <h5>Search Results for "{query}"</h5>
+            <p className="results-count">{products.length} products found</p>
           </div>
-   <div className="categories-section">
-            <div className="categories-list">
-              <button className="category-btn active">All Countries</button>
-              <button className="category-btn">United States</button>
-              <button className="category-btn">Pakistan</button>
-              <button className="category-btn">Canada</button>
-              <button className="category-btn">United Kingdom</button>
-              <button className="category-btn">Austrailia</button>
-             <button className="category-btn ">India</button>
-              <button className="category-btn">Germany</button>
-              <button className="category-btn">France</button>
-           
-            </div>
-          </div>
+
           {/* Products Grid Section */}
           <div className="products-main">
             <Container className="AllProducts">
               {products.length === 0 ? (
-                <p className="text-center">No products found.</p>
+                <p className="text-center">No products matching your search.</p>
               ) : (
                 <div className="mainproductcontainer">
                   <Row xs={1} md={2} lg={3} className="g-4">
@@ -131,11 +146,7 @@ function Home() {
           </div>
         </div>
       </div>
-
-      <Footer />
+   
     </div>
   );
 }
-
-export default Home;
-

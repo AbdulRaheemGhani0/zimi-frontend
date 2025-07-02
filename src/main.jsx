@@ -17,6 +17,7 @@ import { ProductsProvider } from './Context/ProductsContext.jsx';
 import ProductForm from './Components/AddProducts.jsx';
 import AddProducts from './Components/Formtest.jsx';
 import ProductDetail from './Components/ProductsDetailes.jsx';
+import SearchResults from './pages/SearchResults.jsx';
 
 
 createRoot(document.getElementById('root')).render(
@@ -39,6 +40,7 @@ createRoot(document.getElementById('root')).render(
 
     <Route path="/profile" element={<UserProfile />} />
     <Route path="/product/:productId" element={<ProductDetail />} />
+    <Route path="/search-results" element={<SearchResults />} />
 
 </Routes>
 </ProductsProvider>

@@ -1,7 +1,7 @@
 /* Custom Navbar Styling */
 .custom-navbar {
-  background: #DFDFDF; /* White background */
-  box-shadow: 0 5px 20px rgba(0,0,0,.1); /* Matching your category section shadow */
+  background: #DFDFDF;
+  box-shadow: 0 5px 20px rgba(0,0,0,.1);
   padding: 10px 0;
 }
 
@@ -12,39 +12,70 @@
 }
 
 .logo-image {
-  height: 55px; /* Adjust based on your logo's aspect ratio */
+  height: 55px;
   width: auto;
-  max-width: 150px; /* Prevent logo from being too wide */
+  max-width: 150px;
+}
+
+/* Search Bar Styles */
+.navbar-search {
+  flex-grow: 1;
+  max-width: 500px;
+}
+
+.search-input {
+  border-radius: 20px 0 0 20px !important;
+  border: none !important;
+  background: #F4F4F5 !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+}
+
+.search-input:focus {
+  box-shadow: none !important;
+  background: #E5E5E5 !important;
+}
+
+.search-button {
+  border-radius: 0 20px 20px 0 !important;
+  border: none !important;
+  background: #F4F4F5 !important;
+  color: #52525B !important;
+  padding: 8px 16px !important;
+}
+
+.search-button:hover {
+  background: #E5E5E5 !important;
 }
 
 /* Navbar Links */
 .nav-link {
-  background: #F4F4F5 !important; /* Light gray like category buttons */
+  background: #F4F4F5 !important;
   border: none !important;
-  border-radius: 20px !important; /* Rounded like category buttons */
-  padding: 8px 16px !important; /* Same padding as category buttons */
+  border-radius: 20px !important;
+  padding: 8px 16px !important;
   margin: 0 5px !important;
-  font-size: 14px !important; /* Same size as category buttons */
-  font-weight: 500 !important; /* Same weight as category buttons */
-  color: #52525B !important; /* Medium gray like inactive category buttons */
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #52525B !important;
   transition: all 0.3s ease !important;
 }
 
 .nav-link:hover {
-  background: #E5E5E5 !important; /* Slightly darker gray on hover */
-  color: #18181B !important; /* Dark text on hover */
+  background: #E5E5E5 !important;
+  color: #18181B !important;
 }
 
 .nav-link.active {
-  background: #18181B !important; /* Black for active state */
-  color: white !important; /* White text for active state */
+  background: #18181B !important;
+  color: white !important;
 }
 
 /* Toggle Button Styling */
 .navbar-toggle {
   border: none;
   outline: none;
-  background: #52525B!important; /* Match the category button style */
+  background: #52525B !important;
   border-radius: 20px !important;
   padding: 8px 16px !important;
 }
@@ -57,6 +88,13 @@
 @media (max-width: 992px) {
   .custom-navbar {
     padding: 10px 15px;
+  }
+
+  .navbar-search {
+    order: 3;
+    width: 100%;
+    max-width: none;
+    margin: 10px 0;
   }
 
   .nav-link {
@@ -74,109 +112,30 @@
   }
 
   .logo-image {
-    height: 30px; /* Smaller logo on mobile */
+    height: 30px;
   }
-}         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         /*  
-.custom-navbar {
-  background: #DFDFDF; 
-  box-shadow: 0 5px 20px rgba(0,0,0,.1);  
-  padding: 10px 0;
 }
 
- 
-.navbar-logo h1 {
-  font-size: 1.5rem;
-  font-weight: 700; 
-  color: #18181B;  
-  margin: 0;
-  letter-spacing: -0.5px; 
-}
-
- 
-.nav-link {
-  background: #F4F4F5 !important; 
-  border: none !important;
-  border-radius: 20px !important;  
-  padding: 8px 16px !important;  
-  margin: 0 5px !important;
-  font-size: 14px !important; 
-  font-weight: 500 !important;  
-  color: #52525B !important;  
-  transition: all 0.3s ease !important;
-}
-
-.nav-link:hover {
-  background: #E5E5E5 !important;  
-  color: #18181B !important;  
-}
-
-.nav-link.active {
-  background: #18181B !important;  
-  color: white !important;  
-}
-
- 
-.navbar-toggle {
-  border: none;
-  outline: none;
-  background: #52525B!important;  
-  border-radius: 20px !important;
-  padding: 8px 16px !important;
-}
-
-.navbar-toggle:focus {
-  box-shadow: none;
-}
- 
-@media (max-width: 992px) {
-  .custom-navbar {
-    padding: 10px 15px;
+@media (min-width: 992px) {
+  .navbar-search {
+    margin: 0 20px;
   }
-
-  .nav-link {
-    margin: 5px 0 !important;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .navbar-collapse {
-    background: #52525B;
-    padding: 15px;
-    border-radius: 15px;
-    margin-top: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.1);
-  }
-} */
+}
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+      
