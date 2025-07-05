@@ -38,7 +38,7 @@ const SignupForm = () => {
       setError(""); // Reset previous errors
 
       try {
-        await axios.post("http://localhost:5000/auth/register", {
+        await axios.post("https://zimi-backend-final.onrender.com/auth/register", {
           name: values.name,
           email: values.email,
           password: values.password,
